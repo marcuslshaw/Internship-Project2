@@ -4,8 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Input your username and password here
-username = "marcuslshaw+test@gmail.com"
-password = "IocXTZ845MNEPhP"
+username = ""
+password = ""
 
 
 @given('Open main page_c')
