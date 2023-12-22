@@ -3,7 +3,7 @@ from behave import given, then
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# Input your username and password here
+# Use your own name and password
 username = ""
 password = ""
 

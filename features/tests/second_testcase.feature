@@ -8,6 +8,7 @@ Feature: Second Test Case
     And Verify pages_c
     Then Verify contact_c
 
+    # Use your own name and password
 
 
   Scenario: Second Test in FireFox
@@ -17,3 +18,5 @@ Feature: Second Test Case
     And Click on community_f
     And Verify pages_f
     Then Verify contact_f
+
+    # Use your own name and password
