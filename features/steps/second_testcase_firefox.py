@@ -5,19 +5,19 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 # Use your own name and password
-username = ""
-password = ""
+username = "marcuslshaw+test@gmail.com"
+password = "IocXTZ845MNEPhP"
 
 
 @given('Open main page_f')
 def open_main_page(context):
-    context.browser = webdriver.Firefox()
-    context.browser.get('https://soft.reelly.io/sign-in')
+    context.browser_name = "firefox"
+    context.driver.get('https://soft.reelly.io/sign-in')
 
 
 @then("Log into the page_f")
 def log_into_page(context):
-    WebDriverWait(context.browser, 15).until(
+    WebDriverWait(context.driver, 15).until(
         EC.visibility_of_element_located((By.XPATH, "//div[contains(@class, 'number-text-grid') and contains(text(), '9')]"))
     )
     email_button = context.browser.find_element(By.CSS_SELECTOR, "input#email-2")
