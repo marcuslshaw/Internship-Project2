@@ -14,6 +14,22 @@ def before_scenario(context, scenario):
         firefox_options.add_argument("--headless")
         # service = FirefoxService(GeckoDriverManager().install())
         context.driver = webdriver.Firefox(options=firefox_options)
+
+    if 'browserstack' in scenario.tags:
+        bs_user = 'marcusshaw_kLfDar'
+        bs_key = 'SpoVeuBzxDJRLqBWFGAm'
+        url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+
+        options = FirefoxOptions()
+        bstack_options = {
+            'os': "Windows",
+            'osVersion': "10",
+            'browserName': 'Firefox',
+            'sessionName': 'scenario_name'
+        }
+
+        options.set_capability('bstack:options', bstack_options)
+        context.driver = webdriver.Remote(command_executor=url, options=options)
     else:
         print("Initializing Chrome WebDriver")
         chrome_options = ChromeOptions()
