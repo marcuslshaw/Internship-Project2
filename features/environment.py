@@ -1,8 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
@@ -15,7 +13,7 @@ def before_scenario(context, scenario):
         # service = FirefoxService(GeckoDriverManager().install())
         context.driver = webdriver.Firefox(options=firefox_options)
 
-    if 'browserstack' in scenario.tags:
+    elif 'browserstack' in scenario.tags:
         bs_user = 'marcusshaw_kLfDar'
         bs_key = 'SpoVeuBzxDJRLqBWFGAm'
         url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'

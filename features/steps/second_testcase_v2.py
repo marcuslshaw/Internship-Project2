@@ -4,8 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # Use your own name and password
-username = ""
-password = ""
+username = "marcuslshaw+test@gmail.com"
+password = "IocXTZ845MNEPhP"
 
 
 @given('Open main page_v2')
@@ -15,7 +15,7 @@ def open_main_page(context):
 
 @then("Log into the page_v2")
 def log_into_page(context):
-    WebDriverWait(context.driver, 15).until(
+    WebDriverWait(context.driver, 10).until(
         EC.visibility_of_element_located((By.XPATH, "//div[contains(@class, 'number-text-grid') and contains(text(), '9')]"))
     )
     email_button = context.driver.find_element(By.CSS_SELECTOR, "input#email-2")
@@ -29,15 +29,19 @@ def log_into_page(context):
     password_button.click()
     password_button.send_keys(password)
 
-    WebDriverWait(context.driver, 10).until(
+    WebDriverWait(context.driver, 20).until(
         EC.element_to_be_clickable((By.XPATH, "//a[@wized='loginButton']"))
     )
-    login_button = context.driver.find_element(By.XPATH, "//a[@wized='loginButton']")
+    login_button = context.driver.find_element(By.CSS_SELECTOR, "a[wized='loginButton'][class='login-button w-button']")
+
+    # login_button = context.driver.find_element(By.XPATH, "//a[@wized='loginButton']")
     login_button.click()
+    print("Button clicked")
 
 
 @then("Click on settings_v2")
 def settings_page(context):
+    context.driver.save_screenshot("screenshot.png")
     WebDriverWait(context.driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//a[contains(@class, 'menu-button-block') and .//div[contains(text(), 'Settings')]]"))
     )
