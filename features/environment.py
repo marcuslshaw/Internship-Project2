@@ -9,7 +9,7 @@ def before_scenario(context, scenario):
     print("Running scenario with tags:", scenario.tags)
     if 'firefox' in scenario.tags:
         firefox_options = FirefoxOptions()
-        firefox_options.add_argument("--headless")
+        # firefox_options.add_argument("--headless")
         # service = FirefoxService(GeckoDriverManager().install())
         context.driver = webdriver.Firefox(options=firefox_options)
 
@@ -31,7 +31,7 @@ def before_scenario(context, scenario):
     else:
         print("Initializing Chrome WebDriver")
         chrome_options = ChromeOptions()
-        chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--headless")
         service = ChromeService(ChromeDriverManager().install())
         context.driver = webdriver.Chrome(service=service, options=chrome_options)
 

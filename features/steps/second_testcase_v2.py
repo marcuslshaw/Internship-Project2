@@ -29,19 +29,17 @@ def log_into_page(context):
     password_button.click()
     password_button.send_keys(password)
 
-    WebDriverWait(context.driver, 20).until(
+    WebDriverWait(context.driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//a[@wized='loginButton']"))
     )
-    login_button = context.driver.find_element(By.CSS_SELECTOR, "a[wized='loginButton'][class='login-button w-button']")
-
-    # login_button = context.driver.find_element(By.XPATH, "//a[@wized='loginButton']")
+    login_button = context.driver.find_element(By.XPATH, "//a[@wized='loginButton']")
     login_button.click()
-    print("Button clicked")
+    # print("Button clicked")
 
 
 @then("Click on settings_v2")
 def settings_page(context):
-    context.driver.save_screenshot("screenshot.png")
+    # context.driver.save_screenshot("screenshot.png")
     WebDriverWait(context.driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//a[contains(@class, 'menu-button-block') and .//div[contains(text(), 'Settings')]]"))
     )
