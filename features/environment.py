@@ -28,6 +28,14 @@ def before_scenario(context, scenario):
 
         options.set_capability('bstack:options', bstack_options)
         context.driver = webdriver.Remote(command_executor=url, options=options)
+
+    elif 'mobile' in scenario.tags:
+        mobile_emulation = {"deviceName": "Nexus 5"}
+        chrome_options = ChromeOptions()
+        service = ChromeService(ChromeDriverManager().install())
+        chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+        context.driver = webdriver.Chrome(service=service, options=chrome_options)
+
     else:
         print("Initializing Chrome WebDriver")
         chrome_options = ChromeOptions()
@@ -41,3 +49,5 @@ def before_scenario(context, scenario):
 
 def after_scenario(context, scenario):
     context.driver.quit()
+    if hasattr(context, 'driver'):
+        context.driver.quit()

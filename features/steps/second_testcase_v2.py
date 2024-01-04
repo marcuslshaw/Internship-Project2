@@ -46,9 +46,27 @@ def settings_page(context):
     settings_button = context.driver.find_element(By.XPATH, "//a[contains(@class, 'menu-button-block') and .//div[contains(text(), 'Settings')]]")
     settings_button.click()
 
+@then("Click on settings_v2_mobile")
+def settings_page(context):
+    # context.driver.save_screenshot("screenshot.png")
+    WebDriverWait(context.driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//img[@class='menu-img-agent-listing' and @wized='userProfileImage']"))
+    )
+    settings_button = context.driver.find_element(By.XPATH, "//img[@class='menu-img-agent-listing' and @wized='userProfileImage']")
+    settings_button.click()
+
 
 @then("Click on community_v2")
 def community_page(context):
+    WebDriverWait(context.driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//a[contains(@class, 'page-setting-block') and .//div[contains(text(), 'Community')]]"))
+    )
+    community_button = context.driver.find_element(By.XPATH, "//a[contains(@class, 'page-setting-block') and .//div[contains(text(), 'Community')]]")
+    community_button.click()
+
+@then("Click on community_v2_mobile")
+def community_page(context):
+    context.driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
     WebDriverWait(context.driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//a[contains(@class, 'page-setting-block') and .//div[contains(text(), 'Community')]]"))
     )
